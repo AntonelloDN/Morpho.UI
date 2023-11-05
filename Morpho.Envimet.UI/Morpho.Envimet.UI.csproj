@@ -11,10 +11,10 @@
 		<Title>Envimet UI libraries</Title>
 		<PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
 		<Copyright>Copyright © 2023 Antonello Di Nunzio</Copyright>
-		<PackageProjectUrl>https://github.com/AntonelloDN/Morpho</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/AntonelloDN/Morpho</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/AntonelloDN/Morpho.UI</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/AntonelloDN/Morpho.UI</RepositoryUrl>
 		<PackageIcon>logo_morpho_32.png</PackageIcon>
-		<Description>Envimet UI to use with .NET plugins</Description>
+		<Description>Envimet UI to use with .NET plugin</Description>
 		<Configurations>Debug;Release</Configurations>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
