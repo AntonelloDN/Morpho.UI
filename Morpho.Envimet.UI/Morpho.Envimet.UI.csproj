@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<AssemblyName>Morpho.Envimet.UI</AssemblyName>
+		<Authors>AntonelloDN</Authors>
+		<Company>ENVI-met GmbH</Company>
+		<PackageId>Morpho.Envimet.UI</PackageId>
+		<Product>Morpho.Envimet.UI</Product>
+		<Version>1.0.3</Version>
+		<Title>Envimet UI libraries</Title>
+		<PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+		<Copyright>Copyright © 2023 Antonello Di Nunzio</Copyright>
+		<PackageProjectUrl>https://github.com/AntonelloDN/Morpho</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/AntonelloDN/Morpho</RepositoryUrl>
+		<PackageIcon>logo_morpho_32.png</PackageIcon>
+		<Description>Envimet UI to use with .NET plugins</Description>
+		<Configurations>Debug;Release</Configurations>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWpf>true</UseWpf>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="logo_morpho_32.png" Pack="true" PackagePath="." />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="logo_morpho.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2088.41" />
+		<PackageReference Include="Morpho.Envimet" Version="2.0.0" />
+		<PackageReference Include="Morpho.Newtonsoft.Json" Version="13.0.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+</Project>
