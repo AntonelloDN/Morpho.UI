@@ -1,0 +1,35 @@
+name: NUGET
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Publish package
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Build with dotnet
+        working-directory: Morpho.Envimet.UI
+        run: |
+          dotnet build Morpho.Envimet.UI.csproj --configuration Release /nowarn:CS0472 --force --no-incremental
+      
+      - name: Deploy Morpho UI
+        working-directory: Morpho.Envimet.UI
+        run: |
+          echo "Remove bin"
+          rm bin\* -Recurse -Force
+          echo "Clean"
+          dotnet clean Morpho.Envimet.UI.csproj -c Release
+          echo "Pack"
+          dotnet pack Morpho.Envimet.UI.csproj --configuration Release
+          echo "Deploy"
+          dotnet nuget push bin\Release\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
