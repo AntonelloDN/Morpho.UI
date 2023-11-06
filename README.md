@@ -1,4 +1,5 @@
 ![Logo](https://github.com/AntonelloDN/Morpho/blob/master/logo/logo_morpho_32.png)
+[![Version](https://img.shields.io/nuget/v/Morpho.Envimet.UI.svg?color=royalblue)](https://www.nuget.org/packages/Morpho.Envimet.UI)
 
 # Morpho UI
 UI to use for CAD plugin.
