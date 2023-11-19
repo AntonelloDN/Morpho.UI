@@ -1,4 +1,5 @@
 ﻿using Morpho.Envimet.UI;
+using Morpho25.Geometry;
 
 class Program
 {
@@ -18,6 +19,7 @@ class Program
             {  "6", "Soil" },
             {  "7", "Source" },
             {  "8", "Terrain" },
+            {  "9", "Location" },
         };
 
             var componentsTxt = String.Join("\n", components.Select(_ => $"{_.Value} - {_.Key}"));
@@ -30,14 +32,26 @@ class Program
 
             if (component == "1")
             {
-                // Deserialize
-                var jsonString = "{\"size\":{\"cellDimension\":{\"x\":3,\"y\":3,\"z\":3},\"origin\":{\"x\":0,\"y\":0,\"z\":0},\"numX\":100,\"numY\":100,\"numZ\":25},\"nestingGrids\":{\"firstMaterial\":\"0000XL\",\"secondMaterial\":\"000000\",\"numberOfCells\":3},\"telescope\":0,\"startTelescopeHeight\":0,\"combineGridType\":false}";
-
-                EntityForm browser = new EntityForm("grid", jsonString);
-                browser.ShowDialog();
+                // Create grid with Morpho
+                var nestingGrids = new NestingGrids(3, "000000", "000000");
+                var size = new Size(new MorphoGeometry.Vector(0, 0, 0), new CellDimension(3, 3, 3), 100, 100, 25);
+                var eqGrid = new Grid(size, nestingGrids);
 
                 // Serialize
-                Console.WriteLine(browser.Connection.Data);
+                var jsonString = eqGrid.Serialize();
+
+                // Create grid form
+                var form = new EntityForm("grid", jsonString);
+
+                // Show grid form
+                form.ShowDialog();
+
+                // Get data on submit
+                var data = form.Connection.Data;
+
+                // Deserialize
+                var newGrid = Grid.Deserialize(data);
+                Console.Write(newGrid.ToString());
             }
 
             if (component == "2")
@@ -118,6 +132,18 @@ class Program
                 var jsonString = "{\"name\":\"TerrainGroup\",\"geometry\":{\"faces\":[{\"vertices\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0},{\"x\":5.0,\"y\":0.0,\"z\":0.0},{\"x\":0.0,\"y\":5.0,\"z\":0.0}]},{\"vertices\":[{\"x\":5.0,\"y\":0.0,\"z\":0.0},{\"x\":5.0,\"y\":5.0,\"z\":0.0},{\"x\":0.0,\"y\":5.0,\"z\":0.0}]}]},\"id\":1}";
 
                 EntityForm browser = new EntityForm("terrain", jsonString);
+                browser.ShowDialog();
+
+                // Serialize
+                Console.WriteLine(browser.Connection.Data);
+            }
+
+            if (component == "9")
+            {
+                // Deserialize
+                var jsonString = "{\"locationName\":\"Envimet Location\",\"latitude\":42.0,\"longitude\":12.0,\"timezoneReference\":15.0,\"timeZone\":\"GMT\",\"modelRotation\":0.0}";
+
+                EntityForm browser = new EntityForm("location", jsonString);
                 browser.ShowDialog();
 
                 // Serialize
