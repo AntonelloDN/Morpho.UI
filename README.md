@@ -7,6 +7,7 @@ UI to use for CAD plugin.
 ### Mapping with Morpho Core
 | Morpho entity | Morpho UI constructor | 
 | --------------- | --------------- | 
+| Location | `new EntityForm("location", location.Serialize())`|
 | Grid | `new EntityForm("grid", grid.Serialize())`|
 | Building | `new EntityForm("building", grid.Serialize())`|
 | Plant2d | `new EntityForm("plant2D", plant2d.Serialize())`|
